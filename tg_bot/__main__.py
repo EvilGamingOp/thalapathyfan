@@ -47,7 +47,11 @@ And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
+<<<<<<< HEAD
 It took lots of work for [my creator](t.me/SonOfLars) to get me to where I am now, and every donation helps \
+=======
+It took lots of work for [my creator](https://telegram.dog/SonOfLars) to get me to where I am now, and every donation helps \
+>>>>>>> Fix issue #22
 motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
 (see his bio!). He's just a poor student, so every little helps!"""
 
