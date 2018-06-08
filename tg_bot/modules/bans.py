@@ -224,10 +224,10 @@ def kickme(bot: Bot, update: Update):
         return
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
-    if res:
-        update.effective_message.reply_text("No problem.")
-    else:
-        update.effective_message.reply_text("Huh? I can't :/")
+    #if res:
+    #    update.effective_message.reply_text("No problem.")
+    #else:
+    #    update.effective_message.reply_text("Huh? I can't :/")
 
 
 @run_async
