@@ -96,14 +96,14 @@ def chats(bot: Bot, update: Update):
     with BytesIO(str.encode(chatfile)) as output:
         output.name = "chatlist.txt"
         update.effective_message.reply_document(document=output, filename="chatlist.txt",
-                                                caption="Here is the list of chats in my database.")
+                                                caption="എന്റെ ഡേറ്റാബേസിലെ ചാറ്റുകൾ ലിസ്റ്റ് ഇവിടെയാണ്.")
 
 
 def __user_info__(user_id):
     if user_id == dispatcher.bot.id:
-        return """I've seen them in... Wow. Are they stalking me? They're in all the same places I am... oh. It's me."""
+        return """ഞാൻ അവരെ കണ്ട ... അവർ എന്നെ പിന്തുടരുന്നുണ്ടോ? അവർ ഒരേ സ്ഥലങ്ങളിലാണുള്ളത് ... ഓ. ഇത് ഞാനാണ്."""
     num_chats = sql.get_user_num_chats(user_id)
-    return """I've seen them in <code>{}</code> chats in total.""".format(num_chats)
+    return """ഞാൻ അവയെ <code>{}</code> ചാറ്റുകളിൽ മൊത്തത്തിൽ കണ്ടു.""".format(num_chats)
 
 
 def __stats__():
