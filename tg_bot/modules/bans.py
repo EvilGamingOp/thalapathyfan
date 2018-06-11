@@ -28,24 +28,24 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("നിങ്ങൾ ഒരു ഉപയോക്താവിനെ സൂചിപ്പിക്കുന്നതായി തോന്നുന്നില്ല.")
         return ""
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("എനിക്ക് ഈ ഉപയോക്താവിനെ കണ്ടെത്താനാകുന്നില്ല")
             return ""
         else:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("I really wish I could ban admins...")
+        message.reply_text("ഞാൻ അഡ്മിൻസിനെ നിരോധിക്കാൻ കഴിയുമോ")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy?")
+        message.reply_text("ഞാൻ ബാൺ എന്നെ പേടിക്കുന്നില്ല, നീ ഭ്രാന്താണോ?")
         return ""
 
     log = "<b>{}:</b>" \
@@ -61,19 +61,19 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id)
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("Banned!")
+        message.reply_text("നിരോധിച്ചത്!")
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text('Banned!', quote=False)
+            message.reply_text('നിരോധിച്ചത്!', quote=False)
             return log
         else:
             LOGGER.warning(update)
             LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("കൊള്ളാം, എനിക്ക് ആ ഉപയോക്താവിനെ നിരോധിക്കാൻ കഴിയില്ല.")
 
     return ""
 
@@ -91,28 +91,28 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("നിങ്ങൾ ഒരു ഉപയോക്താവിനെ സൂചിപ്പിക്കുന്നതായി തോന്നുന്നില്ല.")
         return ""
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("എനിക്ക് ഈ ഉപയോക്താവിനെ കണ്ടെത്താനാകുന്നില്ല")
             return ""
         else:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("I really wish I could ban admins...")
+        message.reply_text("ഞാൻ അഡ്മിൻസിനെ നിരോധിക്കാൻ കഴിയുമോ ..?")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy?")
+        message.reply_text("ഞാൻ ബാൺ എന്നെ പേടിക്കുന്നില്ല, നീ ഭ്രാന്താണോ?")
         return ""
 
     if not reason:
-        message.reply_text("You haven't specified a time to ban this user for!")
+        message.reply_text("ഈ ഉപയോക്താവിനെ നിരോധിക്കുന്നതിന് നിങ്ങൾ ഒരു സമയം വ്യക്തമാക്കിയിട്ടില്ല!")
         return ""
 
     split_reason = reason.split(None, 1)
@@ -143,19 +143,19 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id, until_date=bantime)
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("Banned! User will be banned for {}.".format(time_val))
+        message.reply_text("നിരോധിച്ചത്! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val))
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("Banned! User will be banned for {}.".format(time_val), quote=False)
+            message.reply_text("നിരോധിച്ചത്! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val), quote=False)
             return log
         else:
             LOGGER.warning(update)
             LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("കൊള്ളാം, എനിക്ക് ആ ഉപയോക്താവിനെ നിരോധിക്കാൻ കഴിയില്ല.")
 
     return ""
 
@@ -179,17 +179,17 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("എനിക്ക് ഈ ഉപയോക്താവിനെ കണ്ടെത്താനാകുന്നില്ല")
             return ""
         else:
             raise
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text("I really wish I could kick admins...")
+        message.reply_text("ഞാൻ അഡ്മിനെ കിക്ക് ചെയ്യാൻ ആഗ്രഹിക്കുന്നു ...")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("Yeahhh I'm not gonna do that")
+        message.reply_text("അതെ ഞാൻ അത് ചെയ്യാൻ പോയില്ല")
         return ""
 
     res = chat.unban_member(user_id)  # unban on current user = kick
@@ -209,7 +209,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
         return log
 
     else:
-        message.reply_text("Well damn, I can't kick that user.")
+        message.reply_text("കൊള്ളാം, എനിക്ക് ആ ഉപയോക്താവിനെ ചവിട്ടുകയില്ല.")
 
     return ""
 
@@ -220,14 +220,14 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 def kickme(bot: Bot, update: Update):
     user_id = update.effective_message.from_user.id
     if is_user_admin(update.effective_chat, user_id):
-        update.effective_message.reply_text("I wish I could... but you're an admin.")
+        update.effective_message.reply_text("എനിക്ക് സാധിക്കുമെങ്കിൽ ... പക്ഷെ നിങ്ങൾ ഒരു അഡ്മിൻ ആണ്.")
         return
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
     #if res:
-    #    update.effective_message.reply_text("No problem.")
+    #    update.effective_message.reply_text("പ്രശ്നമില്ല.")
     #else:
-    #    update.effective_message.reply_text("Huh? I can't :/")
+    #    update.effective_message.reply_text("ഹു എനിക്ക് കഴിയില്ല: /")
 
 
 @run_async
@@ -249,21 +249,21 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("എനിക്ക് ഈ ഉപയോക്താവിനെ കണ്ടെത്താനാകുന്നില്ല")
             return ""
         else:
             raise
 
     if user_id == bot.id:
-        message.reply_text("How would I unban myself if I wasn't here...?")
+        message.reply_text("ഞാൻ ഇവിടെയില്ലെങ്കിൽ ഞാൻ എങ്ങനെ നിരോധിക്കണം?")
         return ""
 
     if is_user_in_chat(chat, user_id):
-        message.reply_text("Why are you trying to unban someone that's already in the chat?")
+        message.reply_text("ചാറ്റിനുള്ള ആരെയെങ്കിലും നിരോധിക്കാൻ നിങ്ങൾ എന്തിനാണ് ശ്രമിക്കുന്നത്?")
         return ""
 
     chat.unban_member(user_id)
-    message.reply_text("Yep, this user can join!")
+    message.reply_text("അതെ, ഈ ഉപയോക്താവിന് ചേരാവുന്നതാണ്!")
 
     log = "<b>{}:</b>" \
           "\n#UNBANNED" \
@@ -279,16 +279,16 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 __help__ = """
- - /kickme: kicks the user who issued the command
+ - /kickme: ആജ്ഞ പുറപ്പെടുവിച്ച ഉപയോക്താവിനെ കുത്തിവയ്ക്കുക
 
 *Admin only:*
- - /ban <userhandle>: bans a user. (via handle, or reply)
- - /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
- - /unban <userhandle>: unbans a user. (via handle, or reply)
- - /kick <userhandle>: kicks a user, (via handle, or reply)
+ - /ban <userhandle>: ഒരു ഉപയോക്താവിനെ നിരോധിക്കുക. (via handle, or reply)
+ - /tban <userhandle> x(m/h/d): x സമയം ഒരു ഉപയോക്താവിനെ നിരോധിക്കുക. (via handle, or reply). m = minutes, h = hours, d = days.
+ - /unban <userhandle>: ഒരു ഉപയോക്താവിനെ ഒഴിവാക്കി. (via handle, or reply)
+ - /kick <userhandle>: ഒരു ഉപയോക്താവിനെ തട്ടുക, (via handle, or reply)
 """
 
-__mod_name__ = "Bans"
+__mod_name__ = "നിരോധനം"
 
 BAN_HANDLER = CommandHandler("ban", ban, pass_args=True, filters=Filters.group)
 TEMPBAN_HANDLER = CommandHandler(["tban", "tempban"], temp_ban, pass_args=True, filters=Filters.group)
