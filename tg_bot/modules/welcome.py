@@ -87,7 +87,7 @@ def new_member(bot: Bot, update: Update):
         for new_mem in new_members:
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
-                update.effective_message.reply_text("Master is in the houseeee, let's get this party started!")
+                update.effective_message.reply_text("എടാ ദാസാ, ഏതാ ഈ അലവലാതി?")
                 continue
 
             # Don't welcome yourself
@@ -229,15 +229,15 @@ def welcome(bot: Bot, update: Update, args: List[str]):
     elif len(args) >= 1:
         if args[0].lower() in ("on", "yes"):
             sql.set_welc_preference(str(chat.id), True)
-            update.effective_message.reply_text("I'll be polite!")
+            update.effective_message.reply_text("ഞാൻ വളരെ മാന്യമായിരിക്കും!")
 
         elif args[0].lower() in ("off", "no"):
             sql.set_welc_preference(str(chat.id), False)
-            update.effective_message.reply_text("I'm sulking, not saying hello anymore.")
+            update.effective_message.reply_text("ഇനി എനിക്ക് നമസ്കാരം പറയേണ്ടാ ..")
 
         else:
             # idek what you're writing, say yes or no
-            update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
+            update.effective_message.reply_text("എനിക്ക് 'on/yes' അല്ലെങ്കിൽ 'off/no' മാത്രം മനസ്സിലാക്കുന്നു!")
 
 
 @run_async
@@ -275,15 +275,15 @@ def goodbye(bot: Bot, update: Update, args: List[str]):
     elif len(args) >= 1:
         if args[0].lower() in ("on", "yes"):
             sql.set_gdbye_preference(str(chat.id), True)
-            update.effective_message.reply_text("I'll be sorry when people leave!")
+            update.effective_message.reply_text("ആളുകൾ വിട്ടുപോകുമ്പോൾ ഞാൻ ക്ഷമ ചോദിക്കും!")
 
         elif args[0].lower() in ("off", "no"):
             sql.set_gdbye_preference(str(chat.id), False)
-            update.effective_message.reply_text("They leave, they're dead to me.")
+            update.effective_message.reply_text("അവർ മരിച്ചതായി ഞാനും ഞാൻ മരിച്ചതായി അവറും വിചാരിച്ചോട്ടെ")
 
         else:
             # idek what you're writing, say yes or no
-            update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
+            update.effective_message.reply_text("എനിക്ക് 'on/yes' അല്ലെങ്കിൽ 'off/no' മാത്രം മനസ്സിലാക്കുന്നു!")
 
 
 @run_async
@@ -297,11 +297,11 @@ def set_welcome(bot: Bot, update: Update) -> str:
     text, data_type, content, buttons = get_welcome_type(msg)
 
     if data_type is None:
-        msg.reply_text("You didn't specify what to reply with!")
+        msg.reply_text("എന്ത് മറുപടി ആണ് പറയേണ്ടത് എന്ന് നിങ്ങൾ വ്യക്തമാക്കിയില്ല.")
         return ""
 
     sql.set_custom_welcome(chat.id, content or text, data_type, buttons)
-    msg.reply_text("Successfully set custom welcome message!")
+    msg.reply_text("ഇഷ്ടാനുസൃത സ്വാഗത സന്ദേശം വിജയകരമായി സജ്ജീകരിച്ചു!")
 
     return "<b>{}:</b>" \
            "\n#SET_WELCOME" \
@@ -317,7 +317,7 @@ def reset_welcome(bot: Bot, update: Update) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     sql.set_custom_welcome(chat.id, sql.DEFAULT_WELCOME, sql.Types.TEXT)
-    update.effective_message.reply_text("Successfully reset welcome message to default!")
+    update.effective_message.reply_text("സ്വാഗത സന്ദേശങ്ങൾ സ്വപ്രേരിതമായി പുനഃസജ്ജമാക്കി!")
     return "<b>{}:</b>" \
            "\n#RESET_WELCOME" \
            "\n<b>Admin:</b> {}" \
@@ -470,7 +470,7 @@ __help__ = """
  - /welcomehelp: view more formatting information for custom welcome/goodbye messages.
 """.format(WELC_HELP_TXT)
 
-__mod_name__ = "Welcomes/Goodbyes"
+__mod_name__ = "സ്വാഗതം/വിട പറയൽ"
 
 NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members, new_member)
 LEFT_MEM_HANDLER = MessageHandler(Filters.status_update.left_chat_member, left_member)
