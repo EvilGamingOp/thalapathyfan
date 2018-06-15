@@ -67,7 +67,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text('നിരോധിച്ചത്!', quote=False)
+            message.reply_text('നിരോധിച്ചു', quote=False)
             return log
         else:
             LOGGER.warning(update)
@@ -143,13 +143,13 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id, until_date=bantime)
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("നിരോധിച്ചത്! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val))
+        message.reply_text("നിരോധിച്ചു! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val))
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("നിരോധിച്ചത്! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val), quote=False)
+            message.reply_text("നിരോധിച്ചു! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val), quote=False)
             return log
         else:
             LOGGER.warning(update)
