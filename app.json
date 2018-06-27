@@ -36,23 +36,23 @@
     },
     "MESSAGE_DUMP": {
       "description": "optional: a chat where your replied saved messages are stored, to stop people deleting their old",
-      "value": ""
+      "value": "-1007777777777"
     },
     "SUDO_USERS": {
       "description": "A space separated list of user_ids which should be considered sudo users",
-      "value": "18673980, 83489514"
+      "value": "254318997 18673980 83489514"
     },
     "SUPPORT_USERS": {
       "description": "A space separated list of user_ids which should be considered support users (can gban/ungban, nothing else)",
-      "value": ""
+      "value": "254318997 18673980 83489514"
     },
     "WHITELIST_USERS": {
       "description": "A space separated list of user_ids which should be considered whitelisted - they can't be banned.",
-      "value": ""
+      "value": "254318997 18673980 83489514"
     },
     "DONATION_LINK": {
       "description": "Optional: link where you would like to receive donations.",
-      "value": ""
+      "value": "https://www.paypal.me/PaulSonOfLars"
     },
     "PORT": {
       "description": "Port to use for your webhooks",
@@ -72,7 +72,7 @@
     },
     "BAN_STICKER": {
       "description": "Which sticker to use when banning people. Use https://telegram.dog/ShowJsonBot to get the file_id",
-      "value": "CAADAgADOwADPPEcAXkko5EB3YGYAg"
+      "value": "CAADBQADfQADv7rGI0wxx1ORU7UzAg"
     }
   },
   "addons": [
