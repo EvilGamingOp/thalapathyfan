@@ -77,7 +77,7 @@ __help__ = """
 When marked as AFK, any mentions will be replied to with a message to say you're not available!
 """
 
-__mod_name__ = "കീബോർഡിൽ നിന്നും അകലെ"
+__mod_name__ = "കീ നി അ"
 
 AFK_HANDLER = DisableAbleCommandHandler("afk", afk)
 AFK_REGEX_HANDLER = DisableAbleRegexHandler("(?i)brb", afk, friendly="afk")
