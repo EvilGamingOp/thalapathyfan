@@ -93,7 +93,7 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
 
 
 @run_async
-@user_admin_no_reply
+#@user_admin_no_reply
 @bot_admin
 @loggable
 def button(bot: Bot, update: Update) -> str:
@@ -103,6 +103,9 @@ def button(bot: Bot, update: Update) -> str:
     if match:
         user_id = match.group(1)
         chat = update.effective_chat  # type: Optional[Chat]
+        if not is_user_admin(chat, int(user.id)):
+            query.answer(text="ചീള് പിള്ളേർസ് ADMIN അല്ല എന്നിട്ട് REMOVE WARN അമർത്താൻ വന്നിരിക്കുന്നു", show_alert=True)
+            return ""
         res = sql.remove_warn(user_id, chat.id)
         if res:
             update.effective_message.edit_text(
