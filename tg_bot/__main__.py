@@ -25,7 +25,7 @@ I'm built in python3, using the python-telegram-bot library, and am fully [opens
 
 You can find the list of available commands with /help.
 
-Using standard [Marie](http://telegram.dog/BanhammerMarie_bot) is always gonna be easier. 
+Using standard [Marie](http://telegram.dog/BanhammerMarie_bot) is always gonna be easier.
 Perks:
 - latest features
 - it's free
@@ -388,7 +388,7 @@ def donate(bot: Bot, update: Update):
     if chat.type == "private":
         update.effective_message.reply_text(DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-        if OWNER_ID != 254318997 and DONATION_LINK:
+        if DONATION_LINK:
             update.effective_message.reply_text("You can also donate to the person currently running me "
                                                 "[here]({})".format(DONATION_LINK),
                                                 parse_mode=ParseMode.MARKDOWN)
