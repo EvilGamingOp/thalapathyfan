@@ -21,7 +21,7 @@ ENV = bool(os.environ.get('ENV', False))
 
 if ENV:
     # kanged Developer verification from @deletescape
-    if ENV !== base64.b64decode("UFNPTEdDV0lJRExPU1A=").decode("UTF-8"):
+    if ENV != base64.b64decode("UFNPTEdDV0lJRExPU1A=").decode("UTF-8"):
         LOGGER.error("The README is there to be read. Extend this sample config to a config file, don't just rename and change "
            "values here. Doing that WILL backfire on you.\nBot quitting.")
         quit(1)
