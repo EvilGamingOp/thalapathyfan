@@ -42,11 +42,11 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("എന്തോ, എനിക്കയാളെ ബൺ കൊടുത്തുവിടാൻ പറ്റുന്നില്ല .")
+        message.reply_text("അഡ്മിൻ ആണ്... ബാൻ ചെയ്യാൻ പറ്റില്ല!")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("ഞാൻ ബാൺ എന്നെ പേടിക്കുന്നില്ല, നീ ഭ്രാന്താണോ?")
+        message.reply_text("ഞാൻ എന്നെത്തന്നെ ബാൻ ചെയ്യണം എന്നാണോ പറയുന്നത്?")
         return ""
 
     log = "<b>{}:</b>" \
@@ -108,15 +108,15 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("എന്തോ, എനിക്കയാളെ ബൺ കൊടുത്തുവിടാൻ പറ്റുന്നില്ല .")
+        message.reply_text("അഡ്മിൻ ആണ്... ബാൻ ചെയ്യാൻ പറ്റില്ല!")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("ഞാൻ ബാൺ എന്നെ പേടിക്കുന്നില്ല, നീ ഭ്രാന്താണോ?")
+        message.reply_text("ഞാൻ എന്നെത്തന്നെ ബാൻ ചെയ്യണം എന്നാണോ പറയുന്നത്?")
         return ""
 
     if not reason:
-        message.reply_text("ഈ ഉപയോക്താവിനെ നിരോധിക്കുന്നതിന് നിങ്ങൾ ഒരു സമയം വ്യക്തമാക്കിയിട്ടില്ല!")
+        message.reply_text("ഇയാളെ എത്ര സമയം ബാൻ ചെയ്യണം എന്നു പറഞ്ഞില്ലല്ലോ?")
         return ""
 
     split_reason = reason.split(None, 1)
@@ -147,13 +147,13 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id, until_date=bantime)
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("നിരോധിച്ചു! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val))
+        message.reply_text("ബണ്ണ് കൊടുത്തുവിട്ടു! User will be BANNED for {}.".format(time_val))
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("നിരോധിച്ചു! ഉപയോക്താവിനെ {} നിരോധിക്കും.".format(time_val), quote=False)
+            message.reply_text("ബണ്ണ് കൊടുത്തുവിട്ടു! User will be BANNED for {}.".format(time_val), quote=False)
             return log
         else:
             LOGGER.warning(update)
@@ -189,7 +189,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text("എന്തോ, എനിക്കയാളെ ബൺ കൊടുത്തുവിടാൻ പറ്റുന്നില്ല .")
+        message.reply_text("അഡ്മിൻ ആണ്... പുറത്താക്കാൻ പറ്റില്ല!")
         return ""
 
     if user_id == bot.id:
@@ -199,7 +199,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("Kicked!")
+        message.reply_text("ലവനെ എടുത്തു വെളിയിൽ കളഞ്ഞിട്ടുണ്ട്!")
         log = "<b>{}:</b>" \
               "\n#KICKED" \
               "\n<b>Admin:</b> {}" \
@@ -213,7 +213,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
         return log
 
     else:
-        message.reply_text("കൊള്ളാം, എനിക്ക് ആ ഉപയോക്താവിനെ ചവിട്ടുകയില്ല.")
+        message.reply_text("കൊള്ളാം, എനിക്ക് ആ ഉപയോക്താവിനെ ചവിട്ടാൻ കഴിയുന്നിലാ.")
 
     return ""
 
@@ -267,7 +267,7 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     chat.unban_member(user_id)
-    message.reply_text("അതെ, ഈ ഉപയോക്താവിന് ചേരാവുന്നതാണ്!")
+    message.reply_text("ശരി, ബാൻ മാറ്റിയിട്ടുണ്ട്... ഇനി ഇയാൾക്ക് ഗ്രൂപ്പിൽ ചേരാൻ കഴിയും!")
 
     log = "<b>{}:</b>" \
           "\n#UNBANNED" \

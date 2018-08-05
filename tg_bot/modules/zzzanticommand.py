@@ -26,14 +26,14 @@ def rem_cmds(bot: Bot, update: Update, args: List[str]) -> str:
     if not args:
         del_pref = sql.get_cmd_pref(chat.id)
         if del_pref:
-            update.effective_message.reply_text("I should be deleting `@bluetextbot` messages now.")
+            update.effective_message.reply_text("നിലവിൽ @bluetextbot കമാന്റുകൾ ഡിലീറ്റ് ചെയ്യുന്നുണ്ട്.")
         else:
-            update.effective_message.reply_text("I'm currently not deleting `@bluetextbot` messages!")
+            update.effective_message.reply_text("നിലവിൽ @bluetextbot കമാന്റുകൾ ഡിലീറ്റ് ചെയ്യുന്നില്ല.")
         return ""
 
     if args[0].lower() in ("on", "yes"):
         sql.set_cmd_joined(str(chat.id), True)
-        update.effective_message.reply_text("I'll try to delete `@bluetextbot` messages!")
+        update.effective_message.reply_text("ശരി, @bluetextbot കമാന്റുകൾ ഡിലീറ്റ് ചെയ്യാൻ ശ്രമിക്കാം!")
         return "<b>{}:</b>" \
                "\n#ANTI_COMMAND" \
                "\n<b>Admin:</b> {}" \
@@ -41,7 +41,7 @@ def rem_cmds(bot: Bot, update: Update, args: List[str]) -> str:
                                                                          mention_html(user.id, user.first_name))
     elif args[0].lower() in ("off", "no"):
         sql.set_cmd_joined(str(chat.id), False)
-        update.effective_message.reply_text("I won't delete `@bluetextbot`  messages.")
+        update.effective_message.reply_text("ശരി, @bluetextbot കമാന്റുകൾ ഡിലീറ്റ് ചെയ്യില്ല!")
         return "<b>{}:</b>" \
                "\n#ANTI_COMMAND" \
                "\n<b>Admin:</b> {}" \
@@ -49,7 +49,7 @@ def rem_cmds(bot: Bot, update: Update, args: List[str]) -> str:
                                                                           mention_html(user.id, user.first_name))
     else:
         # idek what you're writing, say yes or no
-        update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
+        update.effective_message.reply_text("എന്താണ് ചെയ്യേണ്ടത് എന്നു മനസ്സിലായില്ല... 'on/yes' അല്ലെങ്കിൽ 'off/no' എന്ന് ചേർത്ത് അയക്കൂ!")
         return ""
 
 @run_async

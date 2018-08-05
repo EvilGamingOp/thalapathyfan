@@ -86,14 +86,14 @@ def del_joined(bot: Bot, update: Update, args: List[str]) -> str:
     if not args:
         del_pref = sql.get_del_pref(chat.id)
         if del_pref:
-            update.effective_message.reply_text("I should be deleting `user` joined the chat messages now.")
+            update.effective_message.reply_text("നിലവിൽ user joined the chat മെസ്സേജുകൾ ഡിലീറ്റ് ചെയ്യുന്നുണ്ട്.")
         else:
-            update.effective_message.reply_text("I'm currently not deleting old joined messages!")
+            update.effective_message.reply_text("നിലവിൽ user joined the chat മെസ്സേജുകൾ ഡിലീറ്റ് ചെയ്യുന്നില്ല.")
         return ""
 
     if args[0].lower() in ("on", "yes"):
         sql.set_del_joined(str(chat.id), True)
-        update.effective_message.reply_text("I'll try to delete old joined messages!")
+        update.effective_message.reply_text("ശരി, user joined the chat മെസ്സേജുകൾ ഡിലീറ്റ് ചെയ്യാൻ ശ്രമിക്കാം!")
         return "<b>{}:</b>" \
                "\n#CLEAN_SERVICE_MESSAGE" \
                "\n<b>Admin:</b> {}" \
@@ -101,7 +101,7 @@ def del_joined(bot: Bot, update: Update, args: List[str]) -> str:
                                                                          mention_html(user.id, user.first_name))
     elif args[0].lower() in ("off", "no"):
         sql.set_del_joined(str(chat.id), False)
-        update.effective_message.reply_text("I won't delete old joined messages.")
+        update.effective_message.reply_text("ശരി, user joined the chat മെസ്സേജുകൾ ഡിലീറ്റ് ചെയ്യുന്നില്ല!")
         return "<b>{}:</b>" \
                "\n#CLEAN_SERVICE_MESSAGE" \
                "\n<b>Admin:</b> {}" \
@@ -109,7 +109,7 @@ def del_joined(bot: Bot, update: Update, args: List[str]) -> str:
                                                                           mention_html(user.id, user.first_name))
     else:
         # idek what you're writing, say yes or no
-        update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
+        update.effective_message.reply_text("എന്താണ് ചെയ്യേണ്ടത് എന്നു മനസ്സിലായില്ല... 'on/yes' അല്ലെങ്കിൽ 'off/no' എന്നു ചേർത്ത് അയക്കൂ.")
         return ""
 
 
@@ -283,7 +283,7 @@ def welcome(bot: Bot, update: Update, args: List[str]):
 
         else:
             # idek what you're writing, say yes or no
-            update.effective_message.reply_text("എനിക്ക് 'on/yes' അല്ലെങ്കിൽ 'off/no' മാത്രം മനസ്സിലാക്കുന്നു!")
+            update.effective_message.reply_text("എന്താണ് ചെയ്യേണ്ടത് എന്നു മനസ്സിലായില്ല... 'on/yes' അല്ലെങ്കിൽ 'off/no' എന്നു ചേർത്ത് അയക്കൂ.")
 
 
 @run_async
@@ -329,7 +329,7 @@ def goodbye(bot: Bot, update: Update, args: List[str]):
 
         else:
             # idek what you're writing, say yes or no
-            update.effective_message.reply_text("എനിക്ക് 'on/yes' അല്ലെങ്കിൽ 'off/no' മാത്രം മനസ്സിലാക്കുന്നു!")
+            update.effective_message.reply_text("എന്താണ് ചെയ്യേണ്ടത് എന്നു മനസ്സിലായില്ല... 'on/yes' അല്ലെങ്കിൽ 'off/no' എന്നു ചേർത്ത് അയക്കൂ.")
 
 
 @run_async
@@ -441,7 +441,7 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
                                                                           mention_html(user.id, user.first_name))
     else:
         # idek what you're writing, say yes or no
-        update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
+        update.effective_message.reply_text("എന്താണ് ചെയ്യേണ്ടത് എന്നു മനസ്സിലായില്ല... 'on/yes' അല്ലെങ്കിൽ 'off/no' എന്നു ചേർത്ത് അയക്കൂ.")
         return ""
 
 

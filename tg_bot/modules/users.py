@@ -103,7 +103,7 @@ def __user_info__(user_id):
     if user_id == dispatcher.bot.id:
         return """ഞാൻ അവരെ കണ്ട ... അവർ എന്നെ പിന്തുടരുന്നുണ്ടോ? അവർ ഒരേ സ്ഥലങ്ങളിലാണുള്ളത് ... ഓ. ഇത് ഞാനാണ്."""
     num_chats = sql.get_user_num_chats(user_id)
-    return """ഞാൻ അവയെ <code>{}</code> ചാറ്റുകളിൽ മൊത്തത്തിൽ കണ്ടു.""".format(num_chats)
+    return """<code>{}</code> ചാറ്റുകളിൽ ഇയാളെ ഞാൻ കണ്ടിട്ടുണ്ട്.""".format(num_chats)
 
 
 def __stats__():

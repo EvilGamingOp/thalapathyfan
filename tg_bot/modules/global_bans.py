@@ -91,7 +91,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
         return
 
-    message.reply_text("*Blows dust off of banhammer* 😉")
+    message.reply_text("**ഇപ്പ ശരിയാക്കിത്തരാം**! 😉")
 
     banner = update.effective_user  # type: Optional[User]
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
@@ -147,7 +147,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
 
     banner = update.effective_user  # type: Optional[User]
 
-    message.reply_text("I'll give {} a second chance, globally.".format(user_chat.first_name))
+    message.reply_text("ശരി, {} ന് ഒരു അവസരം കൂടി കൊടുത്തേക്കാം!".format(user_chat.first_name))
 
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
                  "{} has ungbanned user {}".format(mention_html(banner.id, banner.first_name),
@@ -179,9 +179,9 @@ def ungban(bot: Bot, update: Update, args: List[str]):
 
     sql.ungban_user(user_id)
 
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS, "un-gban complete!")
+    send_to_list(bot, SUDO_USERS + SUPPORT_USERS, "un-gban ചെയ്തു!")
 
-    message.reply_text("Person has been un-gbanned.")
+    message.reply_text("ഇയാളുടെ GBAN പിൻവലിച്ചിട്ടുണ്ട്!")
 
 
 @run_async
@@ -194,9 +194,11 @@ def gbanlist(bot: Bot, update: Update):
 
     banfile = 'Screw these guys.\n'
     for user in banned_users:
-        banfile += "[x] {} - {}\n".format(user["name"], user["user_id"])
+        banfile += "[x] {} - {} ".format(user["name"], user["user_id"])
         if user["reason"]:
             banfile += "Reason: {}\n".format(user["reason"])
+        else:
+            banfile += "\n"
 
     with BytesIO(str.encode(banfile)) as output:
         output.name = "gbanlist.txt"
