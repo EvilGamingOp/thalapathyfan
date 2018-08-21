@@ -79,11 +79,7 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
                      "\n<b>Counts:</b> <code>{}/{}</code>".format(html.escape(chat.title),
                                                                   warner_tag,
                                                                   mention_html(user.id, user.first_name),
-<<<<<<< HEAD
-                                                                  user.id, reason, num_warns, limit)
-=======
                                                                   reason, num_warns, limit)
->>>>>>> take malayalam strings from @D30N15M
 
     try:
         message.reply_text(reply, reply_markup=keyboard, parse_mode=ParseMode.HTML)
