@@ -362,15 +362,7 @@ def echo(bot: Bot, update: Update):
 
 @run_async
 def reply_keyboard_remove(bot: Bot, update: Update):
-    reply_keyboard = []
-    reply_keyboard.append([
-        ReplyKeyboardRemove(
-            remove_keyboard=True
-        )
-    ])
-    reply_markup = ReplyKeyboardRemove(
-        remove_keyboard=True
-    )
+    reply_markup = ReplyKeyboardRemove()
     old_message = bot.send_message(
         chat_id=update.message.chat_id,
         text='trying',
