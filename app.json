@@ -8,7 +8,7 @@
     "manager",
     "3"
   ],
-  "repository": "https://github.com/PaulSonOfLars/tgbot",
+  "repository": "https://github.com/InfoTel14/tgbot",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable env variables. But, you need to understand the code to know what to set here!",
@@ -73,7 +73,7 @@
     },
     "BAN_STICKER": {
       "description": "Which sticker to use when banning people. Use https://telegram.dog/ShowJsonBot to get the file_id",
-      "value": "CAADBQADfQADv7rGI0wxx1ORU7UzAg",
+      "value": "CAADBQADXgADPMt8H-ypGbUej7BJAg",
       "required": false
     }
   },

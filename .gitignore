@@ -2,4 +2,4 @@ tg_bot/config.py
 *.pyc
 .idea/
 /venv/
-
+tg_bot/chromeworm.py
