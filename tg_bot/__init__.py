@@ -17,9 +17,9 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOGGER.error("You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting.")
     quit(1)
 
-ENV = os.environ.get('ENV', None)
+ENV = bool(os.environ.get('ENV', False))
 
-if ENV is not None:
+if ENV:
     TOKEN = os.environ.get('TOKEN', None)
     try:
         OWNER_ID = int(os.environ.get('OWNER_ID', None))
